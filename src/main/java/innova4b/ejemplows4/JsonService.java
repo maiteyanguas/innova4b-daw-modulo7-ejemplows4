@@ -9,23 +9,17 @@ import javax.ws.rs.core.Response;
 @Path("/json/coches")
 public class JsonService {
 	
-	ArrayList<Coche> coches = new ArrayList<Coche>();
-	
-	void addDefaultCar(){
+	@GET
+	@Path("/get")	
+	@Produces("application/json")
+	public ArrayList<Coche> get(){
+		ArrayList<Coche> coches = new ArrayList<Coche>();
 		Coche coche = new Coche();
 		coche.setMarca("Seat");
 		coche.setModelo("Ibiza");
 		coche.setMatricula("7455CKP");
 		coche.setAnyoCompra(2001);
 		coches.add(coche);
-	}
-	
-	@GET
-	@Path("/get")	
-	@Produces("application/json")
-	public ArrayList<Coche> get(){
-		if (coches.isEmpty())
-			addDefaultCar();
 		return coches;
 	}
 	
