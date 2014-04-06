@@ -35,6 +35,27 @@ public class CocheRepo {
 		} 
 		return coches;
 	}
+	
+
+	public Coche get(int id) {
+		Statement stmt = null;
+		Coche coche = new Coche();
+		try {
+			stmt = connection.createStatement();
+			String query = "select * from coche where id="+id+";";
+			ResultSet rs = stmt.executeQuery(query);				
+			while (rs.next()){	
+				coche.setMarca(rs.getString("marca"));
+				coche.setModelo(rs.getString("modelo"));
+				coche.setMatricula(rs.getString("matricula"));
+				coche.setAnyoCompra(rs.getInt("anyoCompra"));
+				
+    		}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} 
+		return coche;
+	}
 
 	public int insert(Coche coche) {
 		int row = 0;
@@ -48,7 +69,6 @@ public class CocheRepo {
 		ps.setString(3, coche.getMatricula());
 		ps.setInt(4, coche.getAnyoCompra());
 		row = ps.executeUpdate();
-		System.out.println("row:"+row);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

@@ -22,6 +22,14 @@ public class CocheService {
 		CocheRepo cocherepo = new CocheRepo((Connection)servletContext.getAttribute("DBConnection"));
 		return cocherepo.list();
 	}
+
+	@GET
+	@Path("/get/{id}")	
+	@Produces("application/json")
+	public Coche get(@PathParam("id") int id, @Context ServletContext servletContext) { 
+		CocheRepo cocherepo = new CocheRepo((Connection)servletContext.getAttribute("DBConnection"));
+		return cocherepo.get(id);
+	}
 	
 	@POST
 	@Path("/post")
