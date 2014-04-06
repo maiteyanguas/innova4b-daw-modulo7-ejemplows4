@@ -1,4 +1,4 @@
-package innova4b.ejemplows4;
+package innova4b.ejemplows4.Domain;
 
 public class Coche {
 	
